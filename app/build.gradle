@@ -3,7 +3,11 @@ plugins {
     id 'kotlin-android'
     id 'com.google.gms.google-services'
     id 'kotlin-kapt'
+
 }
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 30
@@ -58,6 +62,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-auth:19.0.0'
 
     implementation 'com.github.bumptech.glide:glide:4.11.0'
+    implementation 'com.google.firebase:firebase-firestore-ktx:23.0.2'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
     // Testing
