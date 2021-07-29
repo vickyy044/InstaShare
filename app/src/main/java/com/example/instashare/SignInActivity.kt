@@ -15,6 +15,8 @@ import kotlinx.android.synthetic.main.activity_sign_in.*
 import kotlinx.coroutines.Dispatchers
 import android.content.ContentValues.TAG
 import android.view.View
+import com.example.instashare.Dao.UserDao
+import com.example.instashare.models.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
@@ -100,6 +102,13 @@ class SignInActivity : AppCompatActivity() {
     private fun updateUI(firebaseUser: FirebaseUser?) {
          if(firebaseUser!=null){
              Log.d("SignInActivity","firebase user found")
+
+             val user = User(firebaseUser.uid, firebaseUser.displayName, firebaseUser.photoUrl.toString())
+
+             val userDao = UserDao()
+             userDao.addUSer(user)
+
+
              val mainActivityIntent = Intent(this, MainActivity::class.java)
              startActivity(mainActivityIntent)
              finish()
