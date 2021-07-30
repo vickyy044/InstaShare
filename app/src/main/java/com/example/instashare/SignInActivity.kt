@@ -14,9 +14,11 @@ import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.android.synthetic.main.activity_sign_in.*
 import kotlinx.coroutines.Dispatchers
 import android.content.ContentValues.TAG
+import android.view.MenuItem
 import android.view.View
 import com.example.instashare.Dao.UserDao
 import com.example.instashare.models.User
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
@@ -38,7 +40,7 @@ class SignInActivity : AppCompatActivity() {
 
         // Configure Google Sign In
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestIdToken(getString(R.string.my_web_client_id))
             .requestEmail()
             .build()
 
@@ -99,7 +101,7 @@ class SignInActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateUI(firebaseUser: FirebaseUser?) {
+    fun updateUI(firebaseUser: FirebaseUser?) {
          if(firebaseUser!=null){
              Log.d("SignInActivity","firebase user found")
 
@@ -116,6 +118,26 @@ class SignInActivity : AppCompatActivity() {
              signInButton.visibility = View.VISIBLE
              progressBar.visibility = View.GONE
          }
+    }
+
+    fun logOut(){
+//        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+//            .requestIdToken(getString(R.string.my_web_client_id))
+//            .requestEmail()
+//            .build()
+//
+//        googleSignInClient = GoogleSignIn.getClient(this, gso)
+//        googleSignInClient.signOut()
+//            .addOnCompleteListener(this, OnCompleteListener<Void?> {
+//                // [START_EXCLUDE]
+//                val intent = Intent(this, SignInActivity::class.java)
+//                startActivity(intent)
+//                finish()
+//                // [END_EXCLUDE]
+//            })
+
+                 updateUI(null)
+               finish()
     }
 
 }
